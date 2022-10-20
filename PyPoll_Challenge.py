@@ -1,19 +1,20 @@
 # -*- coding: UTF-8 -*-
 """PyPoll Homework Challenge Solution."""
 
-# Add our dependencies.
+# Add our dependencies so we can read the file we are using
+# with Python commands.
 import csv
 import os
 
-# Add a variable to load a file from a path.
+# Add a variable to load the file from the path on your computer.
 file_to_load = os.path.join("Resources", "election_results.csv")
-# Add a variable to save the file to a path.
+# Add a variable to save the file to a path, using a diferent folder.
 file_to_save = os.path.join("analysis", "election_analysis.txt")
 
-# Initialize a total vote counter.
+# Initialize a total vote counter, so this is better than counting all the rows.
 total_votes = 0
 
-# Candidate Options and candidate votes.
+# Creat Candidate Options as a list and candidate votes as a dictionary.
 candidate_options = []
 candidate_votes = {}
 
@@ -21,46 +22,51 @@ candidate_votes = {}
 county_list=[]
 county_votes={}
 
-# Track the winning candidate, vote count and percentage
+# Track the winning candidate,  initialize a vote count and percentage
 winning_candidate = ""
 winning_count = 0
 winning_percentage = 0
 
-# 2: Track the largest county and county voter turnout.
+# 2: Track the largest county and initialize county voter turnout and percentage.
 county_largest=""
 county_turnout=0
 county_percentage=0
 
-# Read the csv and convert it into a list of dictionaries
+# Read the csv and convert it into a list of dictionaries with a new variable.
+# The work is done within this With Open statement
 with open(file_to_load) as election_data:
+    # Note the language used from the dependencies. We'll create another new variable.
     reader = csv.reader(election_data)
 
-    # Read the header
+    # Read the header so the top row of the csv is excluded from the vote count.
     header = next(reader)
 
-    # For each row in the CSV file.
+    # This for loop will count the total votes for each row (new variable) in the CSV file.
     for row in reader:
 
-        # Add to the total vote count
+        # Add to the total vote count, based on what we initialized earlier.
         total_votes = total_votes + 1
 
-        # Get the candidate name from each row.
+        # Get the candidate name (new variable) from each row. Remember indexing starts at 0.
         candidate_name = row[2]
 
-        # 3: Extract the county name from each row.
+        # 3: Extract the county name (new variable) from each row.
         county_name=row[1]
 
         # If the candidate does not match any existing candidate add it to
-        # the candidate list
+        # the candidate list we set up earlier.  
+        # This will print each name only once.
         if candidate_name not in candidate_options:
 
             # Add the candidate name to the candidate list.
             candidate_options.append(candidate_name)
 
-            # And begin tracking that candidate's voter count.
+            # And begin tracking that candidate's voter count for the 
+            # dictionary we created earlier.
             candidate_votes[candidate_name] = 0
 
-        # Add a vote to that candidate's count
+        # Add a vote to that candidate's count. This puts the vote total
+        # for each candidate in this dictionary with the name.
         candidate_votes[candidate_name] += 1
 
         # 4a: Write an if statement that checks that the
@@ -73,11 +79,12 @@ with open(file_to_load) as election_data:
             # 4c: Begin tracking the county's vote count.
             county_votes[county_name]=0
 
-        # 5: Add a vote to that county's vote count.
+        # 5: Add a vote to that county's vote count in the county dictionary.
         county_votes[county_name] +=1
 
 
-# Save the results to our text file.
+# Save the results to our text file.  Notice we are using the file to 
+# save variable from the beginning.
 with open(file_to_save, "w") as txt_file:
 
     # Print the final vote count (to terminal)
@@ -89,12 +96,12 @@ with open(file_to_save, "w") as txt_file:
         f"County Votes:\n"
         f"-------------------------\n")
     print(election_results, end="")
-
+    # Print this on the txt file as well.
     txt_file.write(election_results)
     
-    # 6a: Write a for loop to get the county from the county dictionary.
+    # 6a: Write a for loop to get the county name (new variable) from the county dictionary.
     for county_name in county_votes:
-        # 6b: Retrieve the county vote count.
+        # 6b: Retrieve the county vote count (new variable).
         cvotes=county_votes.get(county_name)
         # 6c: Calculate the percentage of votes for the county.
         cvote_percentage=float(cvotes)/float(total_votes)*100
@@ -102,12 +109,15 @@ with open(file_to_save, "w") as txt_file:
         county_results = (
             f"{county_name}: {cvote_percentage: .1f}% ({cvotes:,})\n")
         print(county_results)
-         # 6e: Save the county votes to a text file.
+         # 6e: Print the county votes on the text file.
         txt_file.write(county_results)
-         # 6f: Write an if statement to determine the winning county and get its vote count.
-        if (cvotes > county_turnout):
-            county_turnout = cvotes
-            county_largest = county_name
+         # 6f: Write an if statement to determine the largest voting county 
+         # and get its vote count.
+        if (cvotes > county_turnout): #this changes cvotes for the first name.
+            county_turnout = cvotes  #then it holds that value for the loop until
+                                    # it is met again, if ever.
+            county_largest = county_name  #the highest cvote count in the dictionary
+                                            # is linked to the name.
             
     # 7: Print the county with the largest turnout to the terminal.
     largest_county_summary = (
@@ -126,7 +136,9 @@ with open(file_to_save, "w") as txt_file:
         f"-------------------------\n")
     print(candidate_header)
     txt_file.write(candidate_header)
-    #Create conditions to calculate cadidate results
+    
+    #Create conditions to calculate cadidate results with the 
+    # candidate name variable using the candidate votes dictionary.
     for candidate_name in candidate_votes:
 
         # Retrieve vote count and percentage
