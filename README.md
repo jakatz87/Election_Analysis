@@ -1,7 +1,7 @@
 # Election_Analysis
 
 ## Project Overview
-A Colorado Board of Elections employee has given you the following tasks to complete the election audit of a recent local congressional election.
+A Colorado Board of Elections employee has given us the following tasks to complete the election audit of a recent local congressional election.
 
 1. Calculate the total number of votes cast.
 2. Get a complete list of candidates who recieved votes.
@@ -16,21 +16,25 @@ A Colorado Board of Elections employee has given you the following tasks to comp
 - Software: Python 3.7.6, Visual Studio Code
 
 ## Process
-For this project I learned how to load, read, and write to a CSV file with:
+For this project we had to load, read, and write to a CSV file with:
 
 ```
 import csv
 import os
-
+```
+```
 # Create the variable and use the path to the location of the CSV file.
 file_to_load = os.path.join("Resources", "election_results.csv")
-
+```
+```
 # Create the variable and use the path to the location of the future text file.
 file_to_save = os.path.join("analysis", "election_analysis.txt")
-
+```
+```
 # When it's time to write the code commands, begin reading (by default) the with-open code
 with open(file_to_load) as election_data:
-
+```
+```
 # When it's time to write the coding results to a text file, use the with-open code with the "w"rite command
 with open(file_to_save, "w") as txt_file:
 ```
