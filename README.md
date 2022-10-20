@@ -1,7 +1,7 @@
 # Election_Analysis
 
 ## Project Overview
-A Colorado Board of Elections employee has given us the following tasks to complete the election audit of a recent local congressional election.
+A Colorado Board of Elections employee has given me the following tasks to complete the election audit of a recent local congressional election.
 
 1. Calculate the total number of votes cast.
 2. Get a complete list of candidates who recieved votes.
@@ -16,7 +16,7 @@ A Colorado Board of Elections employee has given us the following tasks to compl
 - Software: Python 3.7.6, Visual Studio Code
 
 ## Process
-For this project we had to load, read, and write to a CSV file with:
+For this project I had to load, read, and write to a CSV file with:
 
 ```
 import csv
@@ -50,10 +50,10 @@ The first "for" loop begins to count total votes, candidate names, and county na
         # Get the candidate name (new variable) from each row. Remember indexing starts at 0.
         candidate_name = row[2]
 
-        # xtract the county name (new variable) from each row.
+        # Extract the county name (new variable) from each row.
         county_name=row[1]
 ```
-In order to display the vote counts so that each candidate name and each county name is shown once, we use empty lists and dictionaries that were created before the "for" loop was opened:
+In order to display the vote counts so that each candidate name and each county name is shown once, I use empty lists and dictionaries that were created before the "for" loop was opened:
 ```
 candidate_options = []
 candidate_votes = {}
@@ -61,7 +61,7 @@ candidate_votes = {}
 county_list=[]
 county_votes={}
 ```
-Inside the "for" loop, we can now read the proper information and place it into the proper list and dictionarry:
+Inside the "for" loop, I can now read the proper information and place it into the proper list and dictionarry:
 ```
         # If the candidate does not match any existing candidate add it to the candidate list we set up earlier. This will print each name only once.
         if candidate_name not in candidate_options:
@@ -87,8 +87,8 @@ Inside the "for" loop, we can now read the proper information and place it into 
         # Add a vote to that county's vote count in the county dictionary.
         county_votes[county_name] +=1
 ```
-We have now read everything we need from the CSV file.  It is time to display the information we want to see by writing and printing.
-We begin with the overall results:
+I have now read everything I need from the CSV file.  It is time to display the information I want to see by writing and printing.
+I begin with the overall results:
 ```
 with open(file_to_save, "w") as txt_file:
 
@@ -110,7 +110,7 @@ The printed results on the text file will look like:
 ![image](https://github.com/jakatz87/Election_Analysis/blob/main/Resources/General%20Results%20Header.png)
 
 
-We create a "for" loop to get each county's results and print them:
+I create a "for" loop to get each county's results and print them:
 ```
  for county_name in county_votes:
         # Retrieve the county vote count (new variable).
@@ -123,14 +123,14 @@ We create a "for" loop to get each county's results and print them:
          # Print the county votes on the text file.
         txt_file.write(county_results)
 ```
-Inside that "for" loop, we find which county has the highest turnout depending on "if" the votes in the list by county `cvotes` are higher than the previous county total, `county_turnout`, which was set to 0 when initialzed.  By default, the first county read will be have the highest turnout, then that amount will be the comparitive value for the next iteration in the loop.  The county with the highest turnout will remain until a `cvotes` amount is greater and becomes the new comparitive amount.
+Inside that "for" loop, I find which county has the highest turnout depending on "if" the votes in the list by county `cvotes` are higher than the previous county total, `county_turnout`, which was set to 0 when initialzed.  By default, the first county read will be have the highest turnout, then that amount will be the comparitive value for the next iteration in the loop.  The county with the highest turnout will remain until a `cvotes` amount is greater and becomes the new comparitive amount.
 ```
 # Write an if statement to determine the largest voting county and get its vote count.
         if (cvotes > county_turnout): #this changes cvotes for the first name.
             county_turnout = cvotes  #then it holds that value for the loop until it is met again, if ever.
             county_largest = county_name  #the highest cvote count in the dictionary is linked to the name.
  ```
- We can now print the results:
+ I can now print the results:
  ```
   # Print the county with the largest turnout to the terminal.
     largest_county_summary = (
@@ -147,7 +147,7 @@ The printed results on the text file will look like:
 ![image](https://github.com/jakatz87/Election_Analysis/blob/main/Resources/County%20Turnout%20Print%20Results.png)
 
 
-We now create another separate "for" loop to repeat the process to print the candidate results and winner.
+I now create another separate "for" loop to repeat the process to print the candidate results and winner.
 First, the header for the text file:
 ```
  candidate_header=("\n"
@@ -193,7 +193,7 @@ The printed results on the text file will look like:
 
 
 ## Results and Summary
-The formatting we used in the code will allow us to clearly see all the information requested by the Board of Elections.
+The formatting I used in the code will allow us to clearly see all the information requested by the Board of Elections.
 
 ![image](https://github.com/jakatz87/Election_Analysis/blob/main/Resources/Results%20Screenshot.png)
 
