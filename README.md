@@ -20,3 +20,21 @@ A Colorado Board of Elections employee has given you the following tasks to comp
 ![image](https://github.com/jakatz87/Election_Analysis/blob/main/Resources/Results%20Screenshot.png)
 
 ## Summary
+For this project I learned how to load, read, and write to a CSV file with:
+```
+import csv
+import os
+
+# Create the variable and use the path to the location of the CSV file.
+file_to_load = os.path.join("Resources", "election_results.csv")
+
+# Create the variable and use the path to the location of the future text file.
+file_to_save = os.path.join("analysis", "election_analysis.txt")
+
+# When it's time to write the code commands, begin reading (by default) the with-open code
+with open(file_to_load) as election_data:
+
+# When it's time to write the coding results to a text file, use the with-open code with the "w"rite command
+with open(file_to_save, "w") as txt_file:
+```
+
