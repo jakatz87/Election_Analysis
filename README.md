@@ -38,7 +38,7 @@ with open(file_to_load) as election_data:
 # When it's time to write the coding results to a text file, use the with-open code with the "w"rite command
 with open(file_to_save, "w") as txt_file:
 ```
-When reading the CSV file, after `with open(file_to_load) as election_data:`, I had to use the correct dependency language of 'reader=csv.reader(election_data)' to make the "reader" variable.  Now the program can exclude the header data in the file so it's not counted with the data:  `header = next(reader)`.
+When reading the CSV file, after `with open(file_to_load) as election_data:`, I had to use the correct dependency language of `reader=csv.reader(election_data)` to make the "reader" variable.  Now the program can exclude the header data in the file so it's not counted with the data:  `header = next(reader)`.
 
 The first "for" loop begins to count total votes, candidate names, and county names
 ```
@@ -106,7 +106,9 @@ with open(file_to_save, "w") as txt_file:
     txt_file.write(election_results)
 ```
 The printed results on the text file will look like:
+
 ![image](https://github.com/jakatz87/Election_Analysis/blob/main/Resources/General%20Results%20Header.png)
+
 
 We create a "for" loop to get each county's results and print them:
 ```
@@ -121,7 +123,7 @@ We create a "for" loop to get each county's results and print them:
          # Print the county votes on the text file.
         txt_file.write(county_results)
 ```
-Inside that "for" loop, we find which county has the highest turnout depending on "if" the votes in the list by county `cvotes' are higher than the previous county total, 'county_turnout', which was set to 0 when initialzed.  By default, the first county read will be have the highest turnout, then that amount will be the comparitive value for the next iteration in the loop.  The county with the highest turnout will remain until a `cvotes' amount is greater and becomes the new comparitive amount.
+Inside that "for" loop, we find which county has the highest turnout depending on "if" the votes in the list by county `cvotes` are higher than the previous county total, `county_turnout`, which was set to 0 when initialzed.  By default, the first county read will be have the highest turnout, then that amount will be the comparitive value for the next iteration in the loop.  The county with the highest turnout will remain until a `cvotes` amount is greater and becomes the new comparitive amount.
 ```
 # Write an if statement to determine the largest voting county and get its vote count.
         if (cvotes > county_turnout): #this changes cvotes for the first name.
@@ -141,7 +143,9 @@ Inside that "for" loop, we find which county has the highest turnout depending o
     txt_file.write(largest_county_summary)
 ```
 The printed results on the text file will look like:
+
 ![image](https://github.com/jakatz87/Election_Analysis/blob/main/Resources/County%20Turnout%20Print%20Results.png)
+
 
 We now create another separate "for" loop to repeat the process to print the candidate results and winner.
 First, the header for the text file:
@@ -164,7 +168,7 @@ The "for" loop with the candidate results, found in the lists and dictionaries w
         print(candidate_results) # for the terminal
         txt_file.write(candidate_results) # for the text file
 ```
-The process to determine the winner, by vote and percentage, is the same as the process for the largest county: holding the count of the `votes' variable in the loop if a candidate's results are greater.
+The process to determine the winner, by vote and percentage, is the same as the process for the largest county: holding the count of the `votes` variable in the loop if a candidate's results are greater.
 ```
  if (votes > winning_count) and (vote_percentage > winning_percentage):
             winning_count = votes
@@ -184,9 +188,13 @@ The process to determine the winner, by vote and percentage, is the same as the 
     txt_file.write(winning_candidate_summary)
 ```
 The printed results on the text file will look like:
+
 ![image](https://github.com/jakatz87/Election_Analysis/blob/main/Resources/Candidate%20Print%20Results.png)
+
 
 ## Results and Summary
 The formatting we used in the code will allow us to clearly see all the information requested by the Board of Elections.
 
 ![image](https://github.com/jakatz87/Election_Analysis/blob/main/Resources/Results%20Screenshot.png)
+
+Congratulations Diana!
